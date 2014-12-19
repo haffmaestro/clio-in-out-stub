@@ -23,18 +23,29 @@ class UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    user.update_attributes(params[:user])
+    user.update_attributes(user_params)
     redirect_to users_path
   end
 
   def events
     response.headers["Content-Type"] = "text/event-stream"
-    response.stream.write ""
+    redis = Redis.new
+    redis.psubscribe('users.*') do |on|
+      on.pmessage do |pattern, event, data|
+        response.stream.write("event: #{event}\n")
+        response.stream.write("data: #{data}\n\n")
+      end
+    end
+  rescue IOError
+    logger.info "Stream closed"
+  ensure
+    redis.quit
+    response.stream.close
   end
 
   private
   def user_params 
-    params.require(:user).permit(:status, :first_name, :last_name)
+    params.require(:user).permit(:status,:email, :first_name, :last_name, :web_site, :id )
   end
   def only_myself
     unless current_user.id == params[:id].to_i

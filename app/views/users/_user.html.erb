@@ -1,6 +1,10 @@
-<p> 
+<p class="user-status is-<%=user.status%>" data-id="<%user.id%>"> 
 	<%= link_to user.full_name, user, class: "name" %>
-	<span class="status status-<%=user.status%>"> <%= user.status %> </span>
-	<a href="/users/<%= user.id %>/status" class="update-link">Update
+	<span class="status"> <%= user.status %> </span>
+	<% if user == current_user %>
+		<%= link_to 'Edit', edit_user_path(user), class:"update-link" %>	
+	<% else %>
+		<%= link_to 'Update', status_user_path(user), class:"update-link" %>
+	<% end %>
 	</a>
 </p>

@@ -1,0 +1,6 @@
+<p> 
+	<%= link_to user.full_name, user, class: "name" %>
+	<span class="status status-<%=user.status%>"> <%= user.status %> </span>
+	<a href="/users/<%= user.id %>/status" class="update-link">Update
+	</a>
+</p>

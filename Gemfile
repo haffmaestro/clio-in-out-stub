@@ -10,12 +10,6 @@ gem 'devise'
 gem 'puma'
 gem 'redis'
 
-group :assets do
-  gem 'libv8', "~> 3.16"
-  gem 'therubyracer', '0.12.1', :require => 'v8'
-  gem 'execjs'
-end
-
 gem 'jquery-rails'
 
 group :development, :test do

@@ -22,13 +22,20 @@ class UsersController < ApplicationController
   end
 
   def update
+    response.headers["Content-Type"] = "text/javascript"
     user = User.find(params[:id])
     user.update_attributes(user_params)
+    if user.status == :in
+      $redis.publish('users.in', {userId: user.id}.to_json)
+    else
+      $redis.publish('users.out', {userId: user.id}.to_json)
+    end
     redirect_to users_path
   end
 
   def events
     response.headers["Content-Type"] = "text/event-stream"
+
     redis = Redis.new
     redis.psubscribe('users.*') do |on|
       on.pmessage do |pattern, event, data|

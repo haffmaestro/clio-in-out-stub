@@ -2,13 +2,11 @@
 <%= render current_user %>
 
 <div id="users-container">
-  <% @users.each do |user| %>
-    <p> 
+  <% @users.each do |user| %> 
       <%= render user %>
-    </p>
   <% end %>
 </div>
 
-<!-- <script>
+<script>
   new StatusStream('/users/events')
-</script> -->
+</script>

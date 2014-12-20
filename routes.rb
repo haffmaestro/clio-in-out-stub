@@ -14,8 +14,15 @@ cancel_user_registration GET    /users/cancel(.:format)        devise/registrati
                          PATCH  /users(.:format)               devise/registrations#update
                          PUT    /users(.:format)               devise/registrations#update
                          DELETE /users(.:format)               devise/registrations#destroy
-            users_events GET    /users/events(.:format)        users#events
-             status_user GET    /users/:id/status(.:format)    users#status
+                   teams GET    /teams(.:format)               teams#index
+                         POST   /teams(.:format)               teams#create
+                new_team GET    /teams/new(.:format)           teams#new
+               edit_team GET    /teams/:id/edit(.:format)      teams#edit
+                    team GET    /teams/:id(.:format)           teams#show
+                         PATCH  /teams/:id(.:format)           teams#update
+                         PUT    /teams/:id(.:format)           teams#update
+                         DELETE /teams/:id(.:format)           teams#destroy
+            events_users GET    /users/events(.:format)        users#events
                    users GET    /users(.:format)               users#index
                edit_user GET    /users/:id/edit(.:format)      users#edit
                     user GET    /users/:id(.:format)           users#show

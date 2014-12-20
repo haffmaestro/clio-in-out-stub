@@ -9,6 +9,7 @@ gem 'pg'
 gem 'devise'
 gem 'puma'
 gem 'redis'
+gem 'simple_form'
 
 gem 'jquery-rails'
 

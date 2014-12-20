@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   scope :without_user, lambda {|user| where("id <> :id", :id => user.id) }
+  belongs_to :team
 
 
   STATUSES = {:in => 0, :out => 1}.freeze

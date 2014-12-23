@@ -10,6 +10,10 @@ gem 'devise'
 gem 'puma'
 gem 'redis'
 gem 'simple_form'
+gem 'angularjs-rails'
+gem 'angular_rails_csrf'
+gem 'underscore-rails'
+gem 'active_model_serializers', git: 'https://github.com/rails-api/active_model_serializers', branch: '0-8-stable'
 
 gem 'jquery-rails'
 

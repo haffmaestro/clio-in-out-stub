@@ -8,8 +8,9 @@ Installation:
 1. $ git clone 
 2. $ bundle install
 3. $ brew install redis
-4. $ rake db:create db:migrate db:seed
-5. $ redis-server /usr/local/etc/redis.conf
+4. $ rake db:create db:migrate db:seed - optional
+	if redis server is giving error message about not connecting please complete step 5 as well
+	5. $ redis-server /usr/local/etc/redis.conf - optional
 6. $ rails s
 
 

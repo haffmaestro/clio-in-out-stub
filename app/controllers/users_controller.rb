@@ -4,6 +4,11 @@ class UsersController < ApplicationController
 
   def index
     @users = User.without_user(current_user)
+
+    respond_to do |format|
+      format.html {@users}
+      format.json {render json: @users, each_serializer: UserSerializer}
+    end
   end
 
   def status

@@ -1,35 +1,37 @@
 <!DOCTYPE html>
-<head>
+<head >
   <title>Clio's Statusboard</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<div id="header">
-  <a href="<%= root_path %>">
-    <%= image_tag 'logo.png', class:"header-logo" %>
-  </a>
-  <div style="float:right">
-    <% if user_signed_in? %>
+<body ng-app="clio">
+  <div id="header">
+    <a href="<%= root_path %>">
+      <%= image_tag 'logo.png', class:"header-logo" %>
+    </a>
+    <div style="float:right">
+      <% if user_signed_in? %>
       Signed in as <%= current_user.full_name %>. (<%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>)
-    <% else %>
+      <% else %>
       <%= link_to "Sign Up", new_user_registration_path %> or <%= link_to "Sign In", new_user_session_path %>
-    <% end %>
+      <% end %>
+    </div>
+    <nav>
+      <ul>
+        <li> <%= link_to "New Team", new_team_path %></li>
+        <li> <%= link_to "All Teams", teams_path %></li>
+      </ul>
+    </nav>
   </div>
-  <nav>
-    <ul>
-      <li> <%= link_to "New Team", new_team_path %></li>
-      <li> <%= link_to "All Teams", teams_path %></li>
-    </ul>
-  </nav>
-</div>
-<hr>
+  <hr>
 
-<div id="content">      
-  <% flash.to_hash.slice(:alert, :error, :notice).each_pair do |type, messages| %>
+  <div id="content">      
+    <% flash.to_hash.slice(:alert, :error, :notice).each_pair do |type, messages| %>
     <% Array(messages).each do |m| %>
-      <p class="flash-msg <%= type %>"><%= m %></p>
+    <p class="flash-msg <%= type %>"><%= m %></p>
     <% end %>
-  <% end %>
-  <%= yield %>
-</div>
+    <% end %>
+    <%= yield %>
+  </div>
+</body>

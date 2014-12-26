@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   		post :add_user
   	end
   end
+
   resources :users, :only => [:index, :show, :edit, :update] do
     collection do
       get :events

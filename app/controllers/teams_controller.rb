@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  
+
   def index
     @teams = Team.all
   end
@@ -35,7 +35,7 @@ class TeamsController < ApplicationController
 
   def update
     @team = Team.find params[:id]
-    @team.update_params team_params
+    @team.update team_params
     if @team.save
       redirect_to @team, notice: "Team updated!"
     else

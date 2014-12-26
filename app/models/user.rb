@@ -26,13 +26,4 @@ class User < ActiveRecord::Base
     STATUSES.key(read_attribute(:status))
   end
 
-  # def message action
-  #   msg = { resource: 'user',
-  #           action: action,
-  #           id: self.id,
-  #           obj: self }
-
-  #   $redis.publish 'rt-change', msg.to_json
-  # end
-
 end

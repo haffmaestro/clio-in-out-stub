@@ -21,6 +21,7 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails'
   gem 'factory_girl'
+  gem 'factory_girl_rails'
   gem 'simplecov'
   gem 'interactive_editor'
   gem 'hirb'

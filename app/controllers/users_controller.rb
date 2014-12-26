@@ -56,9 +56,11 @@ class UsersController < ApplicationController
   end
 
   private
+  
   def user_params 
     params.require(:user).permit(:status,:email, :first_name, :last_name, :web_site, :id )
   end
+
   def only_myself
     unless current_user.id == params[:id].to_i
       flash[:alert] = "You can't edit other users' information."

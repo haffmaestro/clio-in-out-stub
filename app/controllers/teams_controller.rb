@@ -55,7 +55,12 @@ class TeamsController < ApplicationController
   end
 
   def add_user
-    user = User.find params[:user][:id]
+    if params[:user_id]
+      user = User.find params[:user_id]
+    else
+      user = User.find params[:user][:id]
+    end
+    
     user.team = Team.find params[:id]
     if user.save
       render json: {saved: true}

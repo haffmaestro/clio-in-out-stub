@@ -4,6 +4,7 @@ RSpec.describe TeamsController, :type => :controller do
 
   let(:team) {create(:team)}
   let(:team_2) {create(:team)}
+  let(:user) {create(:user)}
   login_user
 
   it "should have a current_user" do
@@ -151,4 +152,35 @@ RSpec.describe TeamsController, :type => :controller do
     end
   end
 
+  describe "#destroy" do
+    let!(:team) {create(:team)}
+
+    it 'deletes the record from the DB' do
+      expect(Team.count).to eq(1)
+      delete :destroy, id: team.id
+      expect(Team.count).to eq(0)
+    end
+
+    it 'redirects to the index page' do
+      delete :destroy, id: team.id
+      expect(response).to redirect_to(teams_path)
+    end
+  end
+ 
+  describe "#add_user" do
+    def valid_request
+      post :add_user, id: team.id, user_id: user.id
+    end
+    it 'should add a user to the team' do
+      expect do
+        valid_request
+      end.to change{team.users.count}.by (1)
+    end
+
+    it 'should render json' do
+      valid_request
+      json = JSON.parse(response.body)
+      expect(json).to have_key("saved")
+    end
+  end
 end

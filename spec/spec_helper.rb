@@ -1,4 +1,5 @@
-
+require 'simplecov'
+SimpleCov.start
 require 'devise'
 require 'factory_girl'
 RSpec.configure do |config|

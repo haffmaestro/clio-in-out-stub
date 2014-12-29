@@ -9,26 +9,27 @@ Ruby Version 2.1.5
 2. $ bundle install
 4. $ rake db:create db:migrate 
 5. $ rake db:seed - optional
-	if redis server is giving error message about not connecting please complete step 5 as well
-	6. $ redis-server /usr/local/etc/redis.conf - optional
+6. $ redis-server /usr/local/etc/redis.conf - optional
 7. $ rails s
 
+If redis server is giving error message about not connecting please complete step 6 as well
+
 ## Explanation of solution:
-1. Realtime statuses
+- Realtime statuses
 	I migrated the project to a new Rails 4.1.6 installation so I'd be able to use ActionController::Live.
 	This works really well, and using a redis backend to have the pub/sub system going the statuses update 
 	seemingly instantaneous.
 	The JS code for this is in statusStream.js.coffee file.
-2. Teams
+- Teams
 	Teams is a simple rails CRUD, but the adding of teammembers to a team is done using Angular.
 	The teammembers on the team/show page is also shown using Angular.
 	When you use the dropdown menu on the show page it shows all users who are currently not in the 
 	teams show page you are on.
 	The code for this is in the teamSelect.js.coffee file
-3. Testing
+- Testing
 	There is currently 92.4% test coverage, because the angular code is so simple I'm not testing it
 	but it would be the next thing to test.
-4. IPs
+- IPs
 	To make sure I didnt loose any of the current data in these columns I first made a new IPs model, 
 	which I could use to copy my data as well as test my code for conversion of the ips from Strings to integers.
 	To convert them and store them as Integers I used the following formula:

@@ -25,5 +25,8 @@ group :development, :test do
   gem 'interactive_editor'
   gem 'hirb'
   gem 'awesome_print'
+  gem 'pry'
   gem 'pry-rails'
+  gem 'pry-remote'
+  gem 'pry-nav'
 end

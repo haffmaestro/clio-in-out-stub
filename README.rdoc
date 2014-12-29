@@ -2,7 +2,7 @@
 
 Ruby Version 2.1.5
 
-##Installation:
+## Installation:
 
 1. $ git clone 
 3. $ brew install redis
@@ -13,7 +13,7 @@ Ruby Version 2.1.5
 	6. $ redis-server /usr/local/etc/redis.conf - optional
 7. $ rails s
 
-##Explanation of solution:
+## Explanation of solution:
 1. Realtime statuses
 	I migrated the project to a new Rails 4.1.6 installation so I'd be able to use ActionController::Live.
 	This works really well, and using a redis backend to have the pub/sub system going the statuses update 
@@ -41,14 +41,12 @@ Ruby Version 2.1.5
 	it a USING expression so it knew how to convert my string ips to integers.
 	Before I ran this migration I ran the ips:convert_user_ips so that the ips would not be truncated.
 
-##Questions to be answered
+## Questions to be answered
 * Notice that the IP addresses are stored as integers in the DB. 
 	What are the pros and cons of this approach, compared to storing the IP addresses as strings?
 
-- Since most times when you want to use a an ip address we would use it in the string format,
-	127.0.0.1 can actually be accessed while 2130706433 would have to converted first so human readability is at 0.
-- The type integer has an upper limit on how big it can be and when doing the conversion you can easily make
-	to large numbers, so it would actually be better to store the IPs as BigNum rather than FixNum.
+- Since most times when you want to use a an ip address we would use it in the string format, 127.0.0.1 can 	actually be accessed while 2130706433 would have to converted first so human readability is at 0.
+- The type integer has an upper limit on how big it can be and when doing the conversion you can easily make 	to large numbers, so it would actually be better to store the IPs as BigNum rather than FixNum.
 - The storage of Integer takes less space and is more easily searchable.
 
 * Are there any security issues present within app?
@@ -56,11 +54,9 @@ Ruby Version 2.1.5
   List any security issues you found, and how to fix them. 
   Also list any potential security issues that you investigated that you believe the site to be free of. 
 
-- Because I migrated the app from 3.1.13 to rails 4.1.6 there are bound to be many vulnerabilities which
-	have been patched so this is sure to have increased the security of the app
-	If there are any other vulnerabilities in this app, which I'm sure there are, I have not been able to find them, but I have done most I can do in order to make sure I'm using the latest versions of each software.
+- Because I migrated the app from 3.1.13 to rails 4.1.6 there are bound to be many vulnerabilities which have been patched so this is sure to have increased the security of the app. If there are any other vulnerabilities in this app, which I'm sure there are, I have not been able to find them, but I have done most I can do in order to make sure I'm using the latest versions of each software.
 
-##Other things that could be done
+## Other things that could be done
 1. Do the statusStream code in Angular.
 2. Make sure adding a new user also gets displayed in real time.
 

@@ -1,3 +1,4 @@
+# Deprecated
 class StatusStream
   constructor: (sourceUrl) ->
     @source = new EventSource(sourceUrl)

@@ -21,7 +21,7 @@ If redis server is giving error message about not connecting please complete ste
 	I migrated the project to a new Rails 4.1.6 installation so I'd be able to use ActionController::Live.
 	This works really well, and using a redis backend to have the pub/sub system going the statuses update 
 	seemingly instantaneous.
-	The JS code for this is in statusStream.js.coffee file.
+	The JS code for this is in statusStream.js.coffee file. -Update 29/12/14, this functionality is now done with Angular.
 - Teams
 	Teams is a simple rails CRUD, but the adding of teammembers to a team is done using Angular.
 	The teammembers on the team/show page is also shown using Angular.
@@ -62,7 +62,7 @@ Also list any potential security issues that you investigated that you believe t
 - Because I migrated the app from 3.1.13 to rails 4.1.6 there are bound to be many vulnerabilities which have been patched so this is sure to have increased the security of the app. If there are any other vulnerabilities in this app, which I'm sure there are, I have not been able to find them, but I have done most I can do in order to make sure I'm using the latest versions of each software.
 
 ## Other things that could be done
-1. Do the statusStream code in Angular.
+1. Do the statusStream code in Angular. -Completed 29/12/14
 2. Make sure adding a new user also gets displayed in real time.
 
 

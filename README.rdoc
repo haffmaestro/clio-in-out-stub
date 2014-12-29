@@ -50,10 +50,12 @@ If redis server is giving error message about not connecting please complete ste
 - The type integer has an upper limit on how big it can be and when doing the conversion you can easily make 	to large numbers, so it would actually be better to store the IPs as BigNum rather than FixNum.
 - The storage of Integer takes less space and is more easily searchable.
 
+---------------------------------------------------------------------------
+
 * Are there any security issues present within app?
-  No need to mention security vulnerabilities within external gems.  
-  List any security issues you found, and how to fix them. 
-  Also list any potential security issues that you investigated that you believe the site to be free of. 
+No need to mention security vulnerabilities within external gems.  
+List any security issues you found, and how to fix them. 
+Also list any potential security issues that you investigated that you believe the site to be free of. 
 
 - Because I migrated the app from 3.1.13 to rails 4.1.6 there are bound to be many vulnerabilities which have been patched so this is sure to have increased the security of the app. If there are any other vulnerabilities in this app, which I'm sure there are, I have not been able to find them, but I have done most I can do in order to make sure I'm using the latest versions of each software.
 

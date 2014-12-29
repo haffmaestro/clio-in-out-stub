@@ -1,5 +1,7 @@
 == README
 
+Because the original cloudfront asset was not loading I made a new mockup of a logo.
+
 Ruby Version 2.1.5
 
 ## Installation:

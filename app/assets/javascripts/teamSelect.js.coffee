@@ -1,6 +1,6 @@
-clio = angular.module('clio', ['ngAnimate']);
+clio = angular.module('clio', ['ngAnimate', 'gs.preloaded']);
 
-clio.factory('Teams', ['$http', ($http) ->
+clio.factory('Teams', ['$http', ($http, $preloaded) ->
   return {
     addUser: (user) ->
       teamId = $('#team-id').data('team-id')
@@ -16,15 +16,30 @@ clio.factory('Teams', ['$http', ($http) ->
     }])
 
 
-clio.factory('Users', ['$http', ($http) ->
+clio.factory('Users', ['$http','$preloaded','makePromise', ($http, $preloaded, makePromise) ->
   return {
     get: ->
-      $http.get('/users.json')
-      .then((response)->
-        return response.data)
-      .catch((data)->
-        console.log 'Error #{data}'
-        return data)
+      if $preloaded.users
+        users = _.map($preloaded.users, (user)->
+          user.full_name = "#{user.first_name} #{user.last_name}"
+          return user
+          )
+        return makePromise.call({users: users})
+      else
+        $http.get('/users.json')
+        .then((response)->
+          return response.data)
+        .catch((data)->
+          console.log 'Error #{data}'
+          return data)
+    }])
+
+clio.factory('makePromise', ['$q', ($q)->
+  return {
+    call: (data)->
+      deferred = $q.defer()
+      deferred.resolve(data)
+      return deferred.promise
     }])
 
 clio.directive('teamMemberDisplay', ['Teams','Users', (Teams, Users)->

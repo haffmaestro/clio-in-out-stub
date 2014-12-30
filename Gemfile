@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 gem 'rails', '4.1.6'
 gem 'sass-rails', '~> 4.0.3'
@@ -13,6 +14,7 @@ gem 'simple_form'
 gem 'angularjs-rails'
 gem 'angular_rails_csrf'
 gem 'underscore-rails'
+gem 'rails-assets-angular-preloaded'
 gem 'active_model_serializers', git: 'https://github.com/rails-api/active_model_serializers', branch: '0-8-stable'
 
 gem 'jquery-rails'

@@ -1,14 +1,17 @@
 clio = angular.module('clio')
 
-clio.factory('currentUser', ['$http', ($http)->
+clio.factory('currentUser', ['$http','$preloaded','makePromise', ($http, $preloaded, makePromise)->
   return {
     get: ->
-      $http.get('/users/get_current_user.json')
-      .then((response)->
-        return response.data)
-      .catch((data)->
-        console.log "Error in currentUserFactory"
-        return false)
+      if $preloaded.user.user
+        return makePromise.call($preloaded.user)
+      else
+        $http.get('/users/get_current_user.json')
+        .then((response)->
+          return response.data)
+        .catch((data)->
+          console.log "Error in currentUserFactory"
+          return false)
     }])
 
 clio.directive('statusStream', ->
@@ -27,7 +30,7 @@ clio.directive('statusStream', ->
       $rootScope.$emit('users', {userId: vm.userId, event: 'out'})
     ])
 
-clio.directive('usersDisplay', ['Users','currentUser', (Users, currentUser)->
+clio.directive('usersDisplay', ['Users','currentUser','$preloaded', (Users, currentUser, $preloaded)->
   restrict: 'E'
   replace: true
   template: """

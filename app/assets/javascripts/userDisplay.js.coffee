@@ -3,7 +3,8 @@ clio = angular.module('clio')
 clio.factory('currentUser', ['$http','$preloaded','makePromise', ($http, $preloaded, makePromise)->
   return {
     get: ->
-      if $preloaded.user.user
+      if $preloaded.user
+        console.log "$preloaded currentUser"
         return makePromise.call($preloaded.user)
       else
         $http.get('/users/get_current_user.json')
@@ -65,7 +66,6 @@ clio.directive('usersDisplay', ['Users','currentUser','$preloaded', (Users, curr
       )
     currentUser.get()
     .then((data)->
-      console.log data
       vm.data.currentUser = data.user)
     .catch((data)->
       console.log 'Error in userDisplay'
@@ -73,7 +73,6 @@ clio.directive('usersDisplay', ['Users','currentUser','$preloaded', (Users, curr
 
     Users.get()
     .then( (data) ->
-      console.log data
       vm.data.users = data.users)
     .catch((data)->
       console.log 'Error in userDisplay directive')

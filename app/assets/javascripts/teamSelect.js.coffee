@@ -20,6 +20,7 @@ clio.factory('Users', ['$http','$preloaded','makePromise', ($http, $preloaded, m
   return {
     get: ->
       if $preloaded.users
+        console.log "$preloaded users"
         users = _.map($preloaded.users, (user)->
           user.full_name = "#{user.first_name} #{user.last_name}"
           return user

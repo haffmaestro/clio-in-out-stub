@@ -63,5 +63,5 @@ Also list any potential security issues that you investigated that you believe t
 
 ## Other things that could be done
 1. Do the statusStream code in Angular. -Completed 29/12/14
-2. Make sure adding a new user also gets displayed in real time.
-3. Preload users on index -Completed 30/12/14
+2. Preload users on index -Completed 30/12/14
+3. Make sure adding a new user also gets displayed in real time. To do this I would have to overwrite the Devise registrations controller, so maybe this functionality isnt that desirable.

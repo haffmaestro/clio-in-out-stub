@@ -11,8 +11,9 @@ Ruby Version 2.1.5
 2. $ bundle install
 4. $ rake db:create db:migrate 
 5. $ rake db:seed - optional
-6. $ redis-server /usr/local/etc/redis.conf - optional
-7. $ rails s
+6  $ rake teams:create - optional
+7. $ redis-server /usr/local/etc/redis.conf - optional
+8. $ rails s
 
 If redis server is giving error message about not connecting please complete step 6 as well
 

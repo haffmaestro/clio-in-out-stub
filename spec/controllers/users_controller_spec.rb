@@ -7,7 +7,7 @@ RSpec.describe UsersController, :type => :controller do
 	login_user
 
 	it "should have a current_user" do
-	  expect( subject.current_user).to be
+		expect( subject.current_user).to be
 	end
 
 	describe '#index' do
@@ -20,6 +20,22 @@ RSpec.describe UsersController, :type => :controller do
 			user
 			user_2
 			get :index, format: 'json'
+			json = JSON.parse(response.body)
+			expect(json["users"].count).to eq(2)
+		end
+
+		it 'gets all when asked to' do
+			user
+			user_2
+			get :index, {all: true, format: 'json'}
+			json = JSON.parse(response.body)
+			expect(json["users"].count).to eq(3)
+		end
+
+		it 'gets without user when all: false' do
+			user
+			user_2
+			get :index, {all: false, format: 'json'}
 			json = JSON.parse(response.body)
 			expect(json["users"].count).to eq(2)
 		end

@@ -18,7 +18,7 @@ clio.factory('Teams', ['$http', ($http, $preloaded) ->
 
 clio.factory('Users', ['$http','$preloaded','makePromise', ($http, $preloaded, makePromise) ->
   return {
-    get: ->
+    get: (all = false)->
       if $preloaded.users
         console.log "$preloaded users"
         users = _.map($preloaded.users, (user)->
@@ -27,12 +27,12 @@ clio.factory('Users', ['$http','$preloaded','makePromise', ($http, $preloaded, m
           )
         return makePromise.call({users: users})
       else
-        $http.get('/users.json')
+      $http({method: 'GET', url: '/users.json', params: {all: all}})
         .then((response)->
           return response.data)
         .catch((data)->
           console.log 'Error #{data}'
-          return data)
+          return data)    
     }])
 
 clio.factory('makePromise', ['$q', ($q)->
@@ -80,8 +80,9 @@ clio.directive('teamMemberDisplay', ['Teams','Users', (Teams, Users)->
     Teams.get()
     .then((data)->
       vm.data.team = data.team
-      Users.get()
+      Users.get(true)
       .then( (data) ->
+        console.log data.users
         names = _.map(vm.data.team.users, (user)-> 
           user.full_name)
 

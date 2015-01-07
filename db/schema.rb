@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 20141227010321) do
     t.datetime "last_sign_in_at"
     t.integer  "current_sign_in_ip"
     t.integer  "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "status",                 default: 0,  null: false
     t.string   "first_name",             default: "", null: false
     t.string   "last_name",              default: "", null: false

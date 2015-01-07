@@ -4,9 +4,16 @@ class UsersController < ApplicationController
 
   def index
     @users = User.without_user(current_user)
-    respond_to do |format|
-      format.html {@users}
-      format.json {render json: @users, each_serializer: UserSerializer}
+    @all = User.all
+    if is_true? params[:all]
+      respond_to do |format|
+        format.json {render json: @all, each_serializer: UserSerializer}
+      end
+    else
+      respond_to do |format|
+          format.html {@users}
+          format.json {render json: @users, each_serializer: UserSerializer}
+      end
     end
   end
 
@@ -63,6 +70,10 @@ class UsersController < ApplicationController
       flash[:alert] = "You can't edit other users' information."
       redirect_to users_path
     end
+  end
+
+  def is_true?(string)
+    ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES.include?(string)
   end
 
 end
